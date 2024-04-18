@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TaskApp from '@/components/TaskApp.vue';
+import TasksApp from '@/components/TasksApp.vue';
 </script>
 
 <template>
-  <TaskApp />
+  <TasksApp />
 </template>

@@ -4,5 +4,4 @@
 
 <template>
     <h1>Task Editor</h1>
-
 </template>
