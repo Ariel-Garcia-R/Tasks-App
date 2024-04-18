@@ -4,8 +4,8 @@ import sp from './src/locale/sp.json'
 
 export default function setupI18n() {
   return createI18n({
-    legacy: true,
-    locale: 'en',
+    legacy: false,
+    locale: 'sp',
     messages: {
       en: en,
       sp: sp
