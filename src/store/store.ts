@@ -39,7 +39,7 @@ export const useTasksStore = defineStore('tasks', () => {
     creatingTask.value = status
   }
 
-  function setEditingTask(status: boolean) {
+  function setIsEditingTask(status: boolean) {
     editingTask.value = status
   }
 
@@ -128,7 +128,7 @@ export const useTasksStore = defineStore('tasks', () => {
     getCompletedTasks,
     getUncompletedTasks,
     setCreatingTask,
-    setEditingTask,
+    setIsEditingTask,
     setCurrentTask,
     clearCurrentTask,
     isEditingTask,

@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+input[type='checkbox'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 4.8px !important;
+  border: 1px solid #8a94a6;
+}
+
+input[type='checkbox']:checked {
+  background: url(checkbox.png) center;
+  background-size: 34px 34px;
+  border: none;
+}
+
+.gradient-title {
+  color: #007bff;
+  background-image: linear-gradient(to right, #0d55cf, #64acff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pill {
+  height: 24px;
+  align-items: center;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 1px 8px;
+  font-size: 0.875rem;
+}
+
+.contact-pill {
+  background-color: #adf0d9;
+  color: #07a873;
+}
+
+.email-pill {
+  background-color: #ffe6c7;
+  color: #f58e0a;
+}
+
+.hashtag-pill {
+  background-color: #dbc7ff;
+  color: #702ee6;
+}
+
+.link-pill {
+  background-color: #d6ebff;
+  color: #007fff;
+}
+
+.no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
