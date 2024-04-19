@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia';
 // import { useI18n } from 'vue-i18n'
 import { ref, computed, watch } from "vue";
 import IconButton from '@/components/common/IconButton.vue'
-import Button from "@/components/common/Button.vue";
+import PrimaryButton from "@/components/common/PrimaryButton.vue";
 
 
 // const { t } = useI18n()
@@ -30,10 +30,10 @@ const isEmptyTask = computed(() => taskItem.value.body === '');
 
 const toggleTaskBox = (): void => {
   isTaskBoxOpen.value = !isTaskBoxOpen.value;
- 
+
   setTimeout(() => {
     textarea.value?.focus();
- }, 0);
+  }, 0);
 };
 
 watch(creatingNewTask, (): void => {
@@ -107,72 +107,50 @@ const addCharacter = (character: string) => {
       if (textarea.value) {
         textarea.value.setSelectionRange(newPosition, newPosition);
       }
-    }, 1);}
+    }, 1);
+  }
 }
 
 </script>
 
 <template>
-  <div 
-    v-if="!isTaskBoxOpen"
-    class="flex"
-  >
-    <button
-      class="text-[#8A94A6] flex gap-4 items-center my-5"
-      @click="toggleTaskBox"
-    >
-      <v-icon name="pr-plus-circle" fill="red"></v-icon>
+  <div v-if="!isTaskBoxOpen" class="flex">
+    <button class="text-[#8A94A6] flex gap-4 items-center my-5" @click="toggleTaskBox">
+      <v-icon class="text-blue-600" name="pr-plus-circle"></v-icon>
       <span>{{ $t('taskPlaceholder') }}</span>
     </button>
-    <button 
-    class="ml-auto my-5 text-red-500 p-1 px-3 rounded border border-transparent hover:border-red-500 active:bg-red-500 active:text-white transition-colors duration-150"
-    @click="clearTasksStore"
-    >
-    <span class="hidden xl:inline">{{ $t('clearTasksStore') }}</span>
-    <span class="xl:hidden">
-        <v-icon name="bi-trash3"></v-icon>
-    </span>
-</button>
-</div>
+    <button
+      class="ml-auto my-5 text-red-500 p-1 px-3 rounded border border-transparent hover:border-red-500 active:bg-red-500 active:text-white transition-colors duration-150"
+      @click="clearTasksStore">
+      <span class="hidden xl:inline">{{ $t('clearTasksStore') }}</span>
+      <span class="xl:hidden">
+        <v-icon name="gi-broom" scale="1.2"></v-icon>
+      </span>
+    </button>
+  </div>
 
-<div
-v-else
-class="flex-col w-full rounded-t border border-[#F1F3F4] dark:border-gray-800 my-5"
->
-<div class="h-24 xl:h-16 w-full max-w-[1360px] flex">
-    <div class="mx-3 my-2">
+  <div v-else class="flex-col w-full rounded-t border border-[#F1F3F4] dark:border-gray-800 my-5">
+    <div class="h-24 xl:h-16 w-full max-w-[1360px] flex">
+      <div class="mx-3 my-2">
         <v-icon name="pr-plus-circle" fill="blue"></v-icon>
       </div>
-      <textarea
-        id="task-editor"
-        ref="textarea"
-        :value="taskItem.body"
-        name="task-editor"
+      <textarea id="task-editor" ref="textarea" :value="taskItem.body" name="task-editor"
         class="resize-none w-full dark:bg-gray-900 text-gray-500 pt-[5px] overflow-y-auto outline-none caret-blue-500 placeholder:text-slate-500"
-        :placeholder="$t('taskPlaceholder')"
-        @keyup="handleTextInput"
-        @keydown.ctrl.enter="saveTaskToStore"
-      />
-      <div
-        class="w-24 relative"
-        :class="{ 'opacity-50': isEmptyTask }"
-      >
+        :placeholder="$t('taskPlaceholder')" @keyup="handleTextInput" @keydown.ctrl.enter="saveTaskToStore" />
+      <div class="w-24 relative" :class="{ 'opacity-50': isEmptyTask }">
         <span class="text-[.8rem] absolute bottom-2 right-2">{{ taskItem.body.length }}/{{ maxChars }}</span>
       </div>
     </div>
     <div class="flex justify-between bg-[#FAFBFB] dark:bg-slate-800 h-14 items-center px-2">
       <div class="flex gap-[5px] xl:gap-1">
-        <IconButton
-          :disabled="isEmptyTask"
-          @click="copyToClipboard"
-        >
+        <IconButton :disabled="isEmptyTask" @click="copyToClipboard">
           <template #icon>
             <v-icon name="pr-copy"></v-icon>
-        </template>{{ $t('publicButton') }}
-    </IconButton>
-    <IconButton @click="addCharacter('#')">
-        <template #icon>
-              <v-icon name="pr-tag"></v-icon>
+          </template>{{ $t('publicButton') }}
+        </IconButton>
+        <IconButton @click="addCharacter('#')">
+          <template #icon>
+            <v-icon name="pr-tag"></v-icon>
           </template>{{ $t('highlightButton') }}
         </IconButton>
         <IconButton @click="addCharacter('@')">
@@ -182,31 +160,21 @@ class="flex-col w-full rounded-t border border-[#F1F3F4] dark:border-gray-800 my
         </IconButton>
       </div>
       <div class="flex gap-1">
-        <Button
-          class="bg-[#EAF0F5] hover:bg-slate-200 active:bg-slate-300 text-gray-800 dark:bg-slate-700 dark:hover:bg-slate-600 dark:active:bg-slate-500 dark:text-white"
-          @click="cancel()"
-        >
+        <PrimaryButton
+          class="hidden xl:block bg-[#EAF0F5] hover:bg-slate-200 active:bg-slate-300 text-gray-800 dark:bg-slate-700 dark:hover:bg-slate-600 dark:active:bg-slate-500 dark:text-white"
+          @click="cancel()">
           {{ $t('cancelButton') }}
-        </Button>
-        <Button
-          class="hidden xl:block"
-          @click="saveTaskToStore"
-        >
+        </PrimaryButton>
+        <PrimaryButton class="hidden xl:block" @click="saveTaskToStore">
           {{ isEmptyTask ?
             $t('confirmButtonEmpty') :
             (isEditingTask ? $t('confirmSaveButton') : $t('confirmButton')) }}
-        </Button>
-        <Button
-          class="xl:hidden"
-          @click="saveTaskToStore"
-        >
-<v-icon v-if="isEmptyTask" name="pr-times"></v-icon>
-          <v-icon
-            v-else-if="taskItem.id"
-            name="pr-save"
-          />
-          <v-icon v-else name="pr-plus" ></v-icon>
-        </Button>
+        </PrimaryButton>
+        <PrimaryButton class="xl:hidden" @click="saveTaskToStore">
+          <v-icon v-if="isEmptyTask" name="pr-times"></v-icon>
+          <v-icon v-else-if="taskItem.id" name="pr-save" />
+          <v-icon v-else name="pr-plus"></v-icon>
+        </PrimaryButton>
       </div>
     </div>
   </div>
