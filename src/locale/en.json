@@ -1,3 +1,14 @@
 {
-    "appTitle": "Tasks App"
+  "appTitle": "Tasks App",
+  "welcome": "Welcome",
+  "taskPlaceholder": "Type to add new task",
+  "publicButton": "Copy",
+  "highlightButton": "Tag",
+  "estimationButton": "Mention",
+  "confirmButtonEmpty": "Ok",
+  "confirmSaveButton": "Save",
+  "confirmButton": "Add",
+  "cancelButton": "Cancel",
+  "copiedSuccess": "Copied to clipboard",
+  "clearTasksStore": "Clear all"
 }

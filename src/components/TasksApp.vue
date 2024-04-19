@@ -5,7 +5,9 @@ import TopBar from './layout/TopBar.vue';
 </script>
 
 <template>
-    <TopBar />
-    <TaskList />
-    <TaskEditor />
+    <div class="p-3 max-w-[1360px] mx-auto">
+        <TopBar />
+        <TaskEditor />
+        <TaskList />
+    </div>
 </template>
