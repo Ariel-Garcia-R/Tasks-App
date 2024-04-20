@@ -1,22 +1,21 @@
 <script setup lang="ts">
-
 const props = defineProps({
-    class: {
-        type: String,
-        required: false,
-        default: '', 
-    },
-    iconClass: {
-        type: String,
-        required: false,
-        default: '', 
-    },
-    disabled: {
-        type: Boolean,
-        required: false,
-        default: false, 
-    },
-});
+  class: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  iconClass: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  disabled: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
+})
 </script>
 
 <template>

@@ -2,6 +2,8 @@
   "appTitle": "Tasks",
   "welcome": "Welcome",
   "taskPlaceholder": "Type to add new task",
+  "taskTitlePlaceholder": "Task title",
+  "taskBodyPlaceholder": "Task boby",
   "publicButton": "Copy",
   "highlightButton": "Tag",
   "estimationButton": "Mention",

@@ -2,10 +2,11 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useStoredTasks } from '@/composables/useStoredTasks'
-import { useFormatTask } from '@/composables/useFormatTask'
+import { formatTask } from '@/helpers/formatTask'
 import { generateID } from '@/helpers/generateID'
 import type { Task } from '@/types/taskInterface'
 
+const { getTasksFromStorage, saveTasksToStorage } = useStoredTasks()
 const defaultEmptyTask = {
   id: '',
   title: '',
@@ -19,7 +20,7 @@ export const useTasksStore = defineStore('tasks', () => {
   const editingTask = ref(false)
   const creatingTask = ref(false)
   const tasks = computed(() => taskArray.value)
-  const taskArray = ref<Task[]>(useStoredTasks())
+  const taskArray = ref<Task[]>(getTasksFromStorage())
   const currentTask = ref<Task>({ ...defaultEmptyTask })
 
   // Getters
@@ -54,20 +55,20 @@ export const useTasksStore = defineStore('tasks', () => {
   function addTask(newTask: Task) {
     taskArray.value.push({
       ...newTask,
-      formattedBody: useFormatTask(newTask.body),
+      formattedBody: formatTask(newTask.body),
       id: generateID()
     })
-    localStorage.setItem('tasks', JSON.stringify(taskArray.value))
+    saveTasksToStorage(taskArray.value)
   }
 
-  function updateTask(task: Task) {
-    const taskIndex = taskArray.value.findIndex((task) => task.id === task.id)
+  function updateTask(updatedTask: Task) {
+    const taskIndex = taskArray.value.findIndex((task) => task.id === updatedTask.id)
     if (taskIndex !== -1) {
       taskArray.value[taskIndex] = {
-        ...task,
-        formattedBody: useFormatTask(task.body)
+        ...updatedTask,
+        formattedBody: formatTask(updatedTask.body)
       }
-      localStorage.setItem('tasks', JSON.stringify(taskArray.value))
+      saveTasksToStorage(taskArray.value)
       clearCurrentTask()
     } else {
       throw new Error('Update Task index not found')
@@ -78,7 +79,7 @@ export const useTasksStore = defineStore('tasks', () => {
     const deletedTaskIndex = taskArray.value.findIndex((task) => task.id === taskID)
     if (deletedTaskIndex !== -1) {
       taskArray.value.splice(deletedTaskIndex, 1)
-      localStorage.setItem('tasks', JSON.stringify(taskArray.value))
+      saveTasksToStorage(taskArray.value)
     } else {
       throw new Error('Task index not found')
     }
@@ -99,7 +100,7 @@ export const useTasksStore = defineStore('tasks', () => {
         taskArray.value.unshift(uncompletedTask)
       }
 
-      localStorage.setItem('tasks', JSON.stringify(taskArray.value))
+      saveTasksToStorage(taskArray.value)
     } else {
       throw new Error('Task not found')
     }
@@ -113,7 +114,7 @@ export const useTasksStore = defineStore('tasks', () => {
           removeTask()
         }, 30)
       } else {
-        localStorage.setItem('tasks', JSON.stringify(taskArray.value))
+        saveTasksToStorage(taskArray.value)
       }
     }
     removeTask()
