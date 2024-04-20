@@ -4,13 +4,14 @@
   "taskPlaceholder": "Type to add new task",
   "taskTitlePlaceholder": "Task title",
   "taskBodyPlaceholder": "Task boby",
-  "publicButton": "Copy",
   "highlightButton": "Tag",
   "estimationButton": "Mention",
   "confirmButtonEmpty": "Ok",
   "confirmSaveButton": "Save",
   "confirmButton": "Add",
   "cancelButton": "Cancel",
-  "copiedSuccess": "Copied to clipboard",
-  "clearTasksStore": "Clear all"
+  "clearTasksStore": "Clear all",
+  "allTasks": "All",
+  "doneTasks": "Done",
+  "pendingTasks": "Pending"
 }

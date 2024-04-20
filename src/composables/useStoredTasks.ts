@@ -38,8 +38,11 @@ const fakeTasks = [
 export const useStoredTasks = () => {
   const getTasksFromStorage = () => {
     const localStorageTasks = localStorage.getItem('tasks')
-    if (localStorageTasks) return JSON.parse(localStorageTasks)
-    return fakeTasks
+    if (!localStorageTasks || localStorageTasks === '[]'){
+      return fakeTasks
+    } else {
+      return JSON.parse(localStorageTasks)
+    }
   }
 
   const saveTasksToStorage = (tasks: Task[]) => {

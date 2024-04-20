@@ -4,13 +4,14 @@
   "taskPlaceholder": "Escriba una nueva tarea",
   "taskTitlePlaceholder": "Titulo de la tarea",
   "taskBodyPlaceholder": "Cuerpo de la tarea",
-  "publicButton": "Copiar",
   "highlightButton": "Etiquetar",
   "estimationButton": "Mencionar",
   "confirmButtonEmpty": "OK",
   "confirmButton": "Agregar",
   "confirmSaveButton": "Guardar",
   "cancelButton": "Cancelar",
-  "copiedSuccess": "Copiado al cortapapeles",
-  "clearTasksStore": "Borrar todas"
+  "clearTasksStore": "Borrar todas",
+  "allTasks": "Todas",
+  "doneTasks": "Hechas",
+  "pendingTasks": "Pendientes"
 }
