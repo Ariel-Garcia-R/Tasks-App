@@ -23,7 +23,7 @@ const setTaskToEdit = () => {
 
 <template>
   <div :class="{ 'line-through': props.task.isCompleted }"
-    class="dark:text-slate-500 flex relative items-center rounded hover:translate-x-1 hover:ease-in transition-all"
+    class="text-slate-500 flex relative items-center rounded hover:translate-x-1 hover:ease-in transition-all"
     @mouseenter="isShowingEditButton = true" @mouseleave="isShowingEditButton = false">
     <input :id="task.id" :checked="props.task.isCompleted" type="checkbox" name="list-item"
       class="ml-0 mr-4 border border-[#8A94A6] dark:border-slate-500 shrink-0"

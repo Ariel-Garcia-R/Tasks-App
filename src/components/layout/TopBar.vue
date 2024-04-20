@@ -46,9 +46,9 @@ const switchColorMode = () => {
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            <div class="py-1 z-50" role="none">
+            <div class="py-1" role="none">
               <button
-                class="z-50 block px-4 py-2 text-sm text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900"
+                class="w-full block px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50 active:bg-gray-100 dark:text-white dark:bg-slate-800 dark:hover:bg-gray-900 dark:active:bg-gray-950"
                 role="menuitem"
                 @click="
                   () => {
@@ -60,8 +60,8 @@ const switchColorMode = () => {
                 ENG
               </button>
               <button
-                class="z-50 block px-4 py-2 text-sm  text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900"
-                role="menuitem"
+                class="w-full block px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50 active:bg-gray-100 dark:text-white dark:bg-slate-800 dark:hover:bg-gray-900 dark:active:bg-gray-950"
+                role="menuitem"      
                 @click="
                   () => {
                     locale = 'sp'

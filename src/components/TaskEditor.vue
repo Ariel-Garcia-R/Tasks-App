@@ -54,17 +54,16 @@ const clearTaskEditor = (): void => {
 }
 
 const saveTaskToStore = (): void => {
-  if (isEmptyTaskTitle.value && isEmptyTaskBody) {
+  if (isEmptyTask.value) {
     toggleTaskBox()
   } else if (taskItem.value.id) {
     updateTask({ ...taskItem.value })
     setIsEditingTask(false)
-    clearTaskEditor()
   } else {
     addTask(taskItem.value)
     setCreatingTask(false)
-    clearTaskEditor()
   }
+  clearTaskEditor()
 }
 
 const cancel = (): void => {
@@ -137,10 +136,10 @@ const addCharacter = (character: string) => {
           <span class="text-right block w-12 text-[.8rem] absolute bottom-1 right-2 text-slate-400"
             :class="{ 'opacity-50': isEmptyTaskTitle }">{{ taskItem.title.length }}/{{ maxTitleChars }}</span>
         </div>
-        <div class="mt-3 xl:mt-5 h-20 p-1 rounded relative border border-gray-200 dark:border-slate-800">
+        <div class="mt-3 xl:mt-3 h-20 p-1 rounded relative border border-gray-200 dark:border-slate-800">
           <textarea :maxlength="maxBodyChars" id="task-editor" ref="textarea" :value="taskItem.body"
             name="task-editor-body"
-            class=" pl-1 w-full rounded resize-none dark:bg-gray-900 text-gray-500 overflow-y-auto focus:outline-none caret-blue-500 placeholder:text-slate-500"
+            class="pl-1 w-full rounded resize-none dark:bg-gray-900 text-gray-500 overflow-y-auto focus:outline-none caret-blue-500 placeholder:text-slate-500"
             :placeholder="$t('taskBodyPlaceholder')" @keyup="handleBodyInput" @keydown.ctrl.enter="saveTaskToStore" />
           <span class="text-right block w-12 text-[.8rem] absolute bottom-1 right-2 text-slate-400"
             :class="{ 'opacity-50': isEmptyTaskBody }">{{ taskItem.body.length }}/{{ maxBodyChars }}</span>
