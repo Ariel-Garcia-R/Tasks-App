@@ -30,7 +30,7 @@ const setTaskToEdit = () => {
       style="height: 24px !important; width: 24px !important"
       @change="completeTask(props.task.id, !props.task.isCompleted)" />
     <div class="my-2">
-      <h2 class="text-blue-400 dark:text-blue-400 font-medium" :class="{ 'text-slate-300 dark:text-slate-700': itsBeenEdited }">{{ $props.task.title }}</h2>
+      <h2 class="text-blue-400 dark:text-blue-400 font-medium" :class="{ 'text-slate-300 dark:text-slate-700': itsBeenEdited }">{{ props.task.title }}</h2>
       <li class="flex items-center text-slate-500 italic"
         :class="{ 'text-slate-300 dark:text-slate-700': itsBeenEdited }" v-html="props.task.formattedBody" />
     </div>

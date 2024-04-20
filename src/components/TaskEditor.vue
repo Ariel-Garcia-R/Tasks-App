@@ -11,7 +11,7 @@ const { addTask, setCreatingTask, setIsEditingTask, updateTask, setCurrentTask, 
   taskStore
 const { isEditingTask, getCurrentTask } = storeToRefs(taskStore)
 
-const maxTitleChars = 50
+const maxTitleChars = 30
 const maxBodyChars = 280
 const defaultTaskItem: Task = {
   id: '',
@@ -44,7 +44,7 @@ watch(creatingNewTask, (): void => {
 
 watch(isEditingTask, (): void => {
   if (isEmptyTask.value) {
-    taskItem.value = getCurrentTask.value
+    taskItem.value = { ...getCurrentTask.value }
     isTaskBoxOpen.value = true
   }
 })
@@ -60,7 +60,7 @@ const saveTaskToStore = (): void => {
     updateTask({ ...taskItem.value })
     setIsEditingTask(false)
   } else {
-    addTask(taskItem.value)
+    addTask({...taskItem.value })
     setCreatingTask(false)
   }
   clearTaskEditor()
