@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { type VueWrapper, shallowMount } from '@vue/test-utils'
-import TasksApp from '../TasksApp.vue'
+import TasksApp from '@/components/TasksApp.vue'
 
 describe('TasksApp component test', () => {
   let wrapper: VueWrapper
@@ -9,7 +9,7 @@ describe('TasksApp component test', () => {
     wrapper = shallowMount(TasksApp)
   })
 
-  it('renders properly', () => {
+  it('should renders properly', () => {
     const topBar = wrapper.findComponent({ name: 'TopBar' })
     const taskList = wrapper.findComponent({ name: 'TaskList' })
     const taskEditor = wrapper.findComponent({ name: 'TaskEditor' })
